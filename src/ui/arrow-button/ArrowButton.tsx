@@ -1,13 +1,13 @@
 import arrow from 'src/images/arrow.svg';
-
 import styles from './ArrowButton.module.scss';
+import { useState } from 'react';
 import clsx from 'clsx';
 
 /** Функция для обработки открытия/закрытия формы */
 export type OnClick = () => void;
 
 type ArrowButtonProps = {
-	isOpen: boolean;
+	isOpen?: boolean;
 	onClick: OnClick;
 };
 
@@ -20,7 +20,13 @@ export const ArrowButton = ({ isOpen, onClick }: ArrowButtonProps) => {
 			tabIndex={0}
 			className={clsx(styles.container, { [styles.container_open]: isOpen })}
 			onClick={onClick}>
-			<img src={arrow} alt='иконка стрелочки' className={styles.arrow} />
+			<img
+				src={arrow}
+				alt='иконка стрелочки'
+				className={
+					isOpen ? clsx(styles.arrow, styles.arrow_open) : styles.arrow
+				}
+			/>
 		</div>
 	);
 };
